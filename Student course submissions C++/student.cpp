@@ -18,10 +18,49 @@ void Student::addCourse()
 
     //numCourses always points to the last index of the courseList
     cin >> courseList[numCourses];
-    cout << "\nSuccessfully added " + courseList[numCourses] + " to " + this->name + "'s profile.\n";
-    cout << numCourses;
     numCourses++;
 }
+
+void Student::printCourses()
+{
+    cout << "\nPrinting courses for " << name <<  ":" << endl;
+    for (int currentCourseIndex = 0; currentCourseIndex < courseListSize; currentCourseIndex++) {
+        cout << "Course " << "#" << (currentCourseIndex+1) << ": " << courseList[currentCourseIndex] << endl;
+    }
+
+    cout << "Total courses: " << numCourses << endl;
+}
+
+
+
+void Student::resizeCourseList() {
+
+    //increase the max size of the list.
+    courseListSize++;
+
+    //Create a new list with the greater size
+    string *tempCourseList = new string[courseListSize];
+
+    //Copy the current list of courses into the temporary list.
+    for (int listIndex = 0; listIndex < numCourses; listIndex++)
+    {
+        tempCourseList[listIndex] = courseList[listIndex];
+    }
+    //clear the old lists elements.
+    delete[] courseList;
+
+    //rename the new array.
+    courseList = tempCourseList;
+
+    cout << "used resize function" << endl;
+}
+
+void Student::resetCourseList()
+{
+    numCourses = 0;
+    courseListSize = 0;
+    delete[] courseList;
+};
 
 
 bool Student::addCoursePrompt()
@@ -51,30 +90,7 @@ bool Student::addCoursePrompt()
     }
 }
 
-void Student::resizeCourseList() {
 
-    cout << "using resize function" << endl;
-
-    //increase the max size of the list.
-    courseListSize++;
-
-    //Create a new list with the greater size
-    string *tempCourseList = new string[courseListSize];
-
-    //Copy the current list of courses into the temporary list, we use numcourses because the course list size
-    // would cause an out of bound exception.
-    for (int listIndex = 0; listIndex < numCourses; listIndex++)
-    {
-        tempCourseList[listIndex] = courseList[listIndex];
-    }
-    //clear the old lists elements.
-    delete[] courseList;
-
-    //rename the new array.
-    courseList = tempCourseList;
-
-    cout << "used resize function" << endl;
-}
 
 
 
