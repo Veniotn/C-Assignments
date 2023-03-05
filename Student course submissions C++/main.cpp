@@ -3,35 +3,27 @@
 #include "util.h"
 
 
-int main() {
-//    const int MAX_STUDENTS = 3;
-//    Student studentList[MAX_STUDENTS];
-//    studentList[currentStudent].setName(name);
+int main()
+{
 
-    while (true) {
-
-
+    while (true)
+    {
         //create first student
         Student student1;
 
-        cout << "Please enter students name." << endl;
-
-        string name = "Student";
-
-        cin >> name;
-
+        string name = Util::getStringInput("Please enter student 1's name: ");
 
         student1.setName(name);
 
-//    studentList[currentStudent].setName(name);
 
-        bool doneSubmittingCourses = false;
-        while (!doneSubmittingCourses) {
+        bool stillAddingCourses = true;
+        while (stillAddingCourses)
+        {
             student1.addCourse();
 
             //prompt to see if they want to add another course to the list, the function will return
             // true or false and also checks for a valid response.
-            doneSubmittingCourses = student1.addCoursePrompt();
+            stillAddingCourses = student1.addCoursePrompt();
         }
 
         //print the 1st students courses.
@@ -40,27 +32,24 @@ int main() {
         //move on to the second student, use the copy constructor to create a deep copy
         Student student2 = student1;
 
-        cout << "enter the name for student 2: ";
         //we can reuse the old name variable because the student object doesn't depend on it
-        cin >> name;
-
+        name = Util::getStringInput("Please enter Student 2's name: ");
         //Set the name of the second student
         student2.setName(name);
 
-        cout << "new student created: " + student2.getName() << endl;
 
-
+        //Reset and reprint student 1's courseList
         student1.resetCourseList();
         student1.printCourses();
 
         //print the second students courses.
         student2.printCourses();
 
+        //Make a third student and use the assignment operator to get the values of student2.
         Student student3;
         student3 = student2;
 
-        cout << "Enter Student 3's name: " << endl;
-        cin >> name;
+        name = Util::getStringInput("Please enter Student 3's name: ");
 
         student3.setName(name);
         student3.printCourses();

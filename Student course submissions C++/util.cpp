@@ -18,3 +18,15 @@ string Util::toLower(string input)
     return input;
 }
 
+
+string  Util::getStringInput(string prompt)
+{
+    string response;
+
+    cout << prompt;
+    cin >> response;
+    cout << endl;
+
+    return response;
+}
+

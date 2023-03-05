@@ -9,8 +9,9 @@
 
 void Student::addCourse()
 {
-    //If the course list is bigger than it was when constructed, expand it.
-    if (numCourses >= 1){
+    //If a course has been added already resize the array.
+    if (numCourses >= 1)
+    {
         Student::resizeCourseList();
     }
 
@@ -24,6 +25,7 @@ void Student::addCourse()
 void Student::printCourses()
 {
     cout << "\nPrinting courses for " << name <<  ":" << endl;
+
     for (int currentCourseIndex = 0; currentCourseIndex < courseListSize; currentCourseIndex++) {
         cout << "Course " << "#" << (currentCourseIndex+1) << ": " << courseList[currentCourseIndex] << endl;
     }
@@ -33,7 +35,8 @@ void Student::printCourses()
 
 
 
-void Student::resizeCourseList() {
+void Student::resizeCourseList()
+{
 
     //increase the max size of the list.
     courseListSize++;
@@ -75,12 +78,12 @@ bool Student::addCoursePrompt()
 
         if (Util::toLower(answer) == "yes")
         {
-            return false;
+            return true;
             //Continue the loop if they type yes
         }
         else if (Util::toLower(answer) == "no")
         {
-            return true;
+            return false;
         }
         else
         {

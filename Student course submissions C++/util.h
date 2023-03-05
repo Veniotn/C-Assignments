@@ -11,6 +11,7 @@ using namespace std;
 class Util{
 public:
     static string toLower(string);
+    static string getStringInput(string prompt);
 
 
 

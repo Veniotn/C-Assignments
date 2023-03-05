@@ -25,6 +25,7 @@ class Student{
         Student(const Student& studentToCopy)
         {
             cout << "Using copy constructor." << endl;
+
             name = studentToCopy.name;
             numCourses = studentToCopy.numCourses;
             courseListSize = studentToCopy.courseListSize;
@@ -43,9 +44,11 @@ class Student{
         {
             cout << "Using destructor." << endl;
 
+            //When the destructor is called, everything on the stack will be automatically destroyed, but anything
+            // that is on the heap (our dynamic arrays) needs to be manually deleted. If the courseList isn't null
+            // make it null.
             if (courseList != nullptr)
             {
-                //We only need to manually destroy the dynamic array because, other member variables are automatically destroyed.
                 courseList = nullptr;
             }
 
